@@ -10,6 +10,9 @@
     }
   ],
   "main": "./lib/middleware.js",
+  "typescript": {
+    "definition": "./express-formidable.d.ts"
+  },
   "scripts": {
     "test": "make lint",
     "prepublish": "make build"
@@ -33,6 +36,7 @@
     "underscore": "^1.8.3"
   },
   "devDependencies": {
+    "dts-bundle": "^0.3.0",
     "express": "^4.13.3",
     "tslint": "^2.4.5",
     "typescript": "^1.5.3"

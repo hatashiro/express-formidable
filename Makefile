@@ -8,14 +8,12 @@ LINT_FLAGS := --config ./.tslintrc.json
 CC := tsc
 FLAGS := --module commonjs --target ES5 --noImplicitAny --noEmitOnError --suppressImplicitAnyIndexErrors --removeComments
 
+PROJECT_NAME := express-formidable
 SOURCE_NAMES := middleware
-LIB_NAMES := express \
-	formidable \
-	underscore
 
 SOURCES := $(patsubst %, ./lib/%.ts, $(SOURCE_NAMES))
-DECLARES := $(patsubst %, ./lib/%.d.ts, $(SOURCE_NAMES))
-LIBS := $(foreach LIB, $(LIB_NAMES), ./lib.d/$(LIB)/$(LIB).d.ts)
+ROOT_DECLARE := $(patsubst %, ./lib/%.d.ts, $(PROJECT_NAME))
+DECLARES := $(patsubst %, ./%.d.ts, $(SOURCE_NAMES))
 JS := $(patsubst %.ts, %.js, $(SOURCES))
 
 LAST_BUILD := ./.last_build
@@ -23,10 +21,10 @@ LAST_BUILD := ./.last_build
 .PHONY: lint build all clean modules
 .DEFAULT: build
 
-build: modules $(LAST_BUILD)
+build: modules $(LAST_BUILD) bundle
 
 $(LAST_BUILD): $(SOURCES)
-	$(CC) $(FLAGS) -d $? $(LIBS)
+	$(CC) $(FLAGS) -d $?
 	@touch $@
 
 all: build
@@ -37,10 +35,13 @@ lint-internal: $(SOURCES)
 	$(LINT) $(LINT_FLAGS) $^
 
 clean:
-	rm -f $(JS) $(DECLARES)
+	rm -f $(JS) $(DECLARES) $(ROOT_DECLARE)
 	@rm -f $(LAST_BUILD)
 
 modules: $(NODE_MODULES_PATH)
 
 $(NODE_MODULES_PATH):
 	npm install
+
+bundle:
+	./script/bundle

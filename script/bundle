@@ -1,0 +1,13 @@
+#!/usr/bin/env node
+
+var dts = require('dts-bundle');
+var path = require('path');
+
+var name = 'express-formidable';
+var root = path.join(__dirname, '..');
+
+dts.bundle({
+  name: name,
+  main: path.join(root, 'lib/middleware.d.ts'),
+  out: path.join(root, name + '.d.ts')
+});

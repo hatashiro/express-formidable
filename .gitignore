@@ -29,6 +29,7 @@ node_modules
 # Compiled files
 *.js
 /lib/*.d.ts
+/express-formidable.d.ts
 
 /.last_build
 /.last_build_all

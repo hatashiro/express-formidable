@@ -1,3 +1,4 @@
+/// <reference path="../lib.d.ts" />
 import _ = require('underscore');
 import express = require('express');
 import formidable = require('formidable');
