@@ -2,9 +2,17 @@
   "name": "express-formidable",
   "version": "0.0.1",
   "description": "An Express middleware of Formidable that just works.",
-  "main": "./lib/parser.js",
+  "author": "Hyunje Alex Jun <me@noraesae.net>",
+  "contributors": [
+    {
+      "name": "Hyunje Alex Jun",
+      "email": "me@noraesae.net"
+    }
+  ],
+  "main": "./lib/middleware.js",
   "scripts": {
-    "test": "make lint"
+    "test": "make lint",
+    "prepublish": "make build"
   },
   "repository": {
     "type": "git",
@@ -15,10 +23,18 @@
     "middleware",
     "formidable"
   ],
-  "author": "Hyunje Alex Jun <me@noraesae.net> (http://noraesae.net/)",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/noraesae/express-formidable/issues"
   },
-  "homepage": "https://github.com/noraesae/express-formidable"
+  "homepage": "https://github.com/noraesae/express-formidable",
+  "dependencies": {
+    "formidable": "^1.0.17",
+    "underscore": "^1.8.3"
+  },
+  "devDependencies": {
+    "express": "^4.13.3",
+    "tslint": "^2.4.5",
+    "typescript": "^1.5.3"
+  }
 }

@@ -1,0 +1,14 @@
+/.gitignore
+/.npmignore
+/.travis.yml
+/.tslintrc.json
+/Makefile
+/lib.d/
+/lib/**/*.ts
+!/lib/**/*.d.ts
+/lib/interface/
+/node_modules/
+/test/
+
+/.last_build
+/.last_build_all
