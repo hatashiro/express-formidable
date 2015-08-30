@@ -4,7 +4,7 @@ import express = require('express');
 import formidable = require('formidable');
 
 export interface IOption { }
-export type Middleware = (option: IOption) => express.RequestHandler;
+export type Middleware = (option?: IOption) => express.RequestHandler;
 
 export const parse: Middleware = () => {
   return (req, res, next) => {
