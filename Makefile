@@ -18,7 +18,6 @@ DECLARES := $(patsubst %, ./lib/%.d.ts, $(SOURCE_NAMES))
 LIBS := $(foreach LIB, $(LIB_NAMES), ./lib.d/$(LIB)/$(LIB).d.ts)
 JS := $(patsubst %.ts, %.js, $(SOURCES))
 
-LAST_BUILD_ALL := ./.last_build_all
 LAST_BUILD := ./.last_build
 
 .PHONY: lint build all clean modules
@@ -30,11 +29,7 @@ $(LAST_BUILD): $(SOURCES)
 	$(CC) $(FLAGS) -d $? $(LIBS)
 	@touch $@
 
-all: modules $(LAST_BUILD_ALL)
-
-$(LAST_BUILD_ALL): $(SOURCES)
-	$(CC) $(FLAGS) $? $(LIBS)
-	@touch $@
+all: build
 
 lint: modules lint-internal
 
@@ -43,7 +38,7 @@ lint-internal: $(SOURCES)
 
 clean:
 	rm -f $(JS) $(DECLARES)
-	@rm -f $(LAST_BUILD_ALL) $(LAST_BUILD)
+	@rm -f $(LAST_BUILD)
 
 modules: $(NODE_MODULES_PATH)
 
