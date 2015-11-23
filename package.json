@@ -1,6 +1,6 @@
 {
   "name": "express-formidable",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "An Express middleware of Formidable that just works.",
   "author": "Hyunje Alex Jun <me@noraesae.net>",
   "contributors": [
