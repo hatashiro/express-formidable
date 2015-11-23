@@ -40,6 +40,31 @@ And that's it.
 
 **Requests having a `multipart/form-data` content-type will only be parsed.**
 
+## Option
+
+```js
+app.use(formidable.parse({ /* options */ }));
+```
+
+The option object can contain following keys:
+
+#### `encoding: string`
+
+#### `uploadDir: string`
+
+#### `keepExtensions: boolean`
+
+#### `maxFieldsSize: number`
+
+#### `maxFields: number`
+
+#### `hash: boolean`
+
+#### `multiples: boolean`
+
+For the detail, please refer to the
+[Formidable API](https://github.com/felixge/node-formidable#api).
+
 ## TypeScript
 
 This package is written in TypeScript, but you don't need to care about it for
