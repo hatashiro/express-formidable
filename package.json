@@ -1,6 +1,6 @@
 {
   "name": "express-formidable",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "An Express middleware of Formidable that just works.",
   "author": "Hyunje Alex Jun <me@noraesae.net>",
   "contributors": [
@@ -40,5 +40,6 @@
     "express": "^4.13.3",
     "tslint": "^2.4.5",
     "typescript": "^1.5.3"
-  }
+  },
+  "typings": "express-formidable.d.ts"
 }
