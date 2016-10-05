@@ -1,4 +1,5 @@
-# express-formidable
+# express-formidable [![Build Status](https://travis-ci.org/noraesae/express-formidable.svg?branch=master)](https://travis-ci.org/noraesae/express-formidable)
+
 An [Express](http://expressjs.com) middleware of
 [Formidable](https://github.com/felixge/node-formidable) that just works.
 
@@ -8,7 +9,7 @@ An [Express](http://expressjs.com) middleware of
 framework for Node.js.
 
 [Formidable](https://github.com/felixge/node-formidable) is a Node.js module
-for parsing form data, especially file uploads.
+for parsing form data, including `multipart/form-data` file upload.
 
 So, **`express-formidable`** is something like a bridge between them,
 specifically an Express middleware implementation of Formidable.
@@ -18,76 +19,62 @@ It aims to just work.
 ## Install
 
 ```
-npm install express-formidable@latest
+npm install express-formidable
 ```
 
 ## How to use
 
 ```js
-var express = require('express');
-var formidable = require('express-formidable');
+const express = require('express');
+const formidable = require('express-formidable');
 
 var app = express();
 
-app.use(formidable.parse());
+app.use(formidable());
 
-app.post('/upload', function (req, res) {
-  // req.body will contains the parsed body
+app.post('/upload', (req, res) => {
+  req.fields; // contains non-file fields
+  req.files; // contains files
 });
 ```
 
 And that's it.
 
-**Requests having a `multipart/form-data` content-type will only be parsed.**
+express-formidable can basically parse form types Formidable can handle,
+including `application/x-www-form-urlencoded`, `application/json`, and
+`multipart/form-data`.
 
 ## Option
 
 ```js
-app.use(formidable.parse({ /* options */ }));
+app.use(formidable(opts));
 ```
 
-The option object can contain following keys:
+`opts` are options which can be set to `form` in Formidable. For example:
 
-#### `encoding: string`
-
-#### `uploadDir: string`
-
-#### `keepExtensions: boolean`
-
-#### `maxFieldsSize: number`
-
-#### `maxFields: number`
-
-#### `hash: boolean`
-
-#### `multiples: boolean`
+```js
+app.use(formidable({
+  encoding: 'utf-8',
+  uploadDir: '/my/dir',
+  multiples: true, // req.files to be arrays of files
+});
+```
 
 For the detail, please refer to the
 [Formidable API](https://github.com/felixge/node-formidable#api).
 
-## TypeScript
-
-This package is written in TypeScript, but you don't need to care about it for
-normal usage.
-
-If you'd like to use it with TypeScript, we provide `express-formidable.d.ts`
-in the root directory of the built package. And we also have `typescript` field
-in `package.json` which will be supported in the future.
-
-To build from source, `make build`.
-
 ## Contribute
 
-We use Makefile for our task manager as it's simple enough.
+```
+git clone https://github.com/noraesae/express-formidable.git
+cd express-formidable
+npm install
+```
 
-To build:
-```
-make build
-```
+To lint and test:
 
-To lint:
 ```
-make lint
+npm test
 ```
 
 ## License
