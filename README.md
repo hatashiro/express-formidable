@@ -1,4 +1,4 @@
-# express-formidable [![Build Status](https://travis-ci.org/noraesae/express-formidable.svg?branch=master)](https://travis-ci.org/noraesae/express-formidable)
+# express-formidable [![Build Status](https://travis-ci.org/utatti/express-formidable.svg?branch=master)](https://travis-ci.org/utatti/express-formidable)
 
 An [Express](http://expressjs.com) middleware of
 [Formidable](https://github.com/felixge/node-formidable) that just works.
@@ -98,7 +98,7 @@ Unless an `error` event are provided by the `events` array parameter, it will ha
 ## Contribute
 
 ```
-git clone https://github.com/noraesae/express-formidable.git
+git clone https://github.com/utatti/express-formidable.git
 cd express-formidable
 npm install
 ```
