@@ -5,7 +5,7 @@
   "author": "Jun <me@noraesae.net>",
   "main": "./lib/middleware.js",
   "engines": {
-    "node": ">= 5"
+    "node": ">= 8"
   },
   "scripts": {
     "test": "eslint . && mocha test"
