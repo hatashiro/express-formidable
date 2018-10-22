@@ -1,11 +1,11 @@
 {
   "name": "express-formidable",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "An Express middleware of Formidable that just works.",
   "author": "Jun <me@noraesae.net>",
   "main": "./lib/middleware.js",
   "engines": {
-    "node": ">= 4"
+    "node": ">= 5"
   },
   "scripts": {
     "test": "eslint . && mocha test"

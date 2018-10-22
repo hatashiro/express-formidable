@@ -2,8 +2,8 @@
 
 const request = require('request');
 
-function send(type, data) {
-  const opts = { url: 'http://localhost:1234' };
+function send(type, data, context = '/') {
+  const opts = { url: `http://localhost:1234${context}` };
 
   if (type === 'application/x-www-form-urlencoded') {
     opts.form = data;

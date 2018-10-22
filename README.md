@@ -26,11 +26,11 @@ npm install express-formidable
 
 ```js
 const express = require('express');
-const formidable = require('express-formidable');
+const formidableMiddleware = require('express-formidable');
 
 var app = express();
 
-app.use(formidable());
+app.use(formidableMiddleware());
 
 app.post('/upload', (req, res) => {
   req.fields; // contains non-file fields
@@ -47,13 +47,13 @@ including `application/x-www-form-urlencoded`, `application/json`, and
 ## Option
 
 ```js
-app.use(formidable(opts));
+app.use(formidableMiddleware(opts));
 ```
 
 `opts` are options which can be set to `form` in Formidable. For example:
 
 ```js
-app.use(formidable({
+app.use(formidableMiddleware({
   encoding: 'utf-8',
   uploadDir: '/my/dir',
   multiples: true, // req.files to be arrays of files
@@ -62,6 +62,38 @@ app.use(formidable({
 
 For the detail, please refer to the
 [Formidable API](https://github.com/felixge/node-formidable#api).
+
+## Events
+
+```js
+app.use(formidableMiddleware(opts, events));
+```
+
+`events` is an array of json with two field:
+
+| Field | Description |
+| ----- | ----------- |
+| `event` | The event emitted by the form of formidable. A complete list of all the possible events, please refer to the [Formidable Events](https://github.com/felixge/node-formidable#events) |
+| `action` | The callback to execute. The signature is `function (req, res, next, ...formidable_parameters)` |
+
+For example:
+
+```js
+const events = [
+  {
+    event: 'fileBegin',
+    action: function (req, res, next, name, file) { /* your callback */ }
+  }, 
+  {
+    event: 'field',
+    action: function (req, res, next, name, value) { /* your callback */ }
+  }
+];
+```
+
+### Error event
+
+Unless an `error` event are provided by the `events` array parameter, it will handle by the standard `next(error)`.
 
 ## Contribute
 
